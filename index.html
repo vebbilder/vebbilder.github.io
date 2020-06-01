@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 		/* Указываем box sizing */
 
@@ -39,47 +40,6 @@
 		dd {
 			margin: 0;
 		}
-
-		/*анимации */
-
-		@-webkit-keyframes myfirst {
-			0% {
-				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-			}
-			25% {
-				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-			}
-			50% {
-				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-			}
-			100% {
-				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-			}
-		}
-
-		@keyframes myfirst {
-			0% {
-				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-			}
-			25% {
-				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-			}
-			50% {
-				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-			}
-			100% {
-				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-			}
-		}
-
 		body {
 			overflow: hidden;
 		}
@@ -99,7 +59,6 @@
 			width: 100%;
 			position: fixed;
 			top: 0px;
-			left: -17px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -118,7 +77,6 @@
 		}
 
 		header.fixed.full-width .cont {
-			left: 8.5px;
 			position: relative;
 		}
 
