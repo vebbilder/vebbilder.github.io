@@ -40,6 +40,46 @@
 			margin: 0;
 		}
 
+		/*анимации */
+
+		@-webkit-keyframes myfirst {
+			0% {
+				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			}
+			25% {
+				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+			}
+			50% {
+				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+			}
+			100% {
+				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			}
+		}
+
+		@keyframes myfirst {
+			0% {
+				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			}
+			25% {
+				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+			}
+			50% {
+				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+			}
+			100% {
+				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			}
+		}
+
 		body {
 			overflow: hidden;
 		}
@@ -153,8 +193,14 @@
 			position: fixed;
 			width: 100%;
 			height: 100vh;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
 			visibility: hidden;
 			top: 0px;
@@ -163,7 +209,9 @@
 			bottom: 0px;
 			background: rgba(0, 0, 0, 0.90);
 			opacity: 0;
-			transition: .55s;
+			-webkit-transition: .25s;
+			-o-transition: .25s;
+			transition: .25s;
 			z-index: 0;
 		}
 
@@ -175,6 +223,9 @@
 			align-items: center;
 			justify-content: center;
 			padding: 20px 0px;
+			-webkit-transition: .22s;
+			-o-transition: .22s;
+			transition: .22s;
 		}
 
 		label.lab-view.close {
@@ -191,22 +242,25 @@
 			background: red;
 		}
 
-		 .popup-window {
-                  position: relative;
-                  max-width: 550px;
-                  max-height: 95vh;
-                  overflow: auto;
-                  padding: 15px;
-                  background: #ffffff;
-                  color: #313030;
-                  -webkit-transition: .55s;
-                   -o-transition: .55s;
-                  transition: .55s;
-                  -webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-                  -ms-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-                  transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-                  z-index: 1000;
-                  }
+		.popup-window {
+			position: absolute;
+			max-width: 550px;
+			max-height: 95vh;
+			overflow: auto;
+			padding: 15px;
+			background: #ffffff;
+			color: #313030;
+			-webkit-transition: .55s;
+			-moz-transition: .55s;
+			-o-transition: .55s;
+			transition: .55s;
+			-moz-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-ms-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-o-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			z-index: 1000;
+		}
 
 		#view,
 		#hidden {
@@ -226,19 +280,25 @@
 			opacity: 0;
 			z-index: 0;
 		}
-		
-		#view:checked~div > .popup-window  {
+
+		#view:checked~div>.popup-window {
 			-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			-moz-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
 			-ms-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
 			-o-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
 			transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			opacity: 1;
+			z-index: 999;
 		}
 
-		#hidden:checked~div > .popup-window {
-    		-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+		#hidden:checked~div>.popup-window {
+			-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-moz-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
 			-ms-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
 			-o-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
 			transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			opacity: 0;
+			z-index: 0;
 		}
 
 
@@ -332,8 +392,8 @@
 			</div>
 		</div>
 	</section>
-	<input type="radio" id="view" name="open">
 	<input type="radio" id="hidden" name="open">
+	<input type="radio" id="view" name="open">
 	<div class="out-popup">
 		<label for="hidden">
 			</label>
