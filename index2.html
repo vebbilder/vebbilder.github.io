@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		/* Указываем box sizing */
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		/* Убираем внутренние отступы */
+
+		body,
+		ul[class],
+		ol[class] {
+			padding: 0;
+		}
+
+		/* Убираем внешние отступы */
+
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		p,
+		ul[class],
+		ol[class],
+		li,
+		figure,
+		figcaption,
+		blockquote,
+		dl,
+		dd {
+			margin: 0;
+		}
+
+		/*анимации */
+
+		@-webkit-keyframes myfirst {
+			0% {
+				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			}
+			25% {
+				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+			}
+			50% {
+				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+			}
+			100% {
+				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			}
+		}
+
+		@keyframes myfirst {
+			0% {
+				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			}
+			25% {
+				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
+			}
+			50% {
+				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
+			}
+			100% {
+				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			}
+		}
+
+		body {
+			width: 100%;
+			min-height: 100vh;
+			padding: 50px 0px 30px 0px;
+			background: gray;
+		}
+
+		header.fixed.full-width {
+			width: 100%;
+			position: fixed;
+			top: 0px;
+			background: black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 40px;
+			z-index: 18;
+		}
+
+		header.fixed.full-width:after {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: black;
+			z-index: 0;
+		}
+
+		header.fixed.full-width .cont {
+			position: relative;
+		}
+
+		.lab-view {
+			display: inline-block;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			color: #fff;
+			background: red;
+			padding: 5px 10px;
+			line-height: 1;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		.cont {
+			width: 100%;
+			max-width: 1230px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0px 15px;
+			z-index: 5;
+		}
+
+		.logo {
+			width: 30px;
+			height: 30px;
+			background: #fff;
+			border-radius: 50%;
+		}
+
+		.right-block {
+			display: flex;
+			flex-direction: column;
+			color: #fff;
+			margin: 10px 0px;
+		}
+
+		.descr.full-width {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: left;
+		}
+
+		.desc__wrap.cont {
+			width: 100%;
+			flex-direction: column;
+			align-items: flex-start;
+			margin: 15px 10px 15px 10px;
+			padding: 20px;
+			background: #d8d8d8;
+		}
+
+		h3.title {
+			color: red;
+			margin-bottom: 20px;
+		}
+
+		p.sub__text {
+			margin: 10px 10px;
+			padding: 10px;
+			background: #e6e6e6;
+		}
+
+		.out-popup {
+			will-change: transform;
+			position: fixed;
+			width: 100%;
+			height: 100vh;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			visibility: hidden;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			background: rgba(0, 0, 0, 0.90);
+			opacity: 0;
+			-webkit-transition: .55s;
+			-o-transition: .55s;
+			transition: .55s;
+			z-index: 0;
+		}
+
+		.lab-view.close {
+			position: absolute;
+			display: flex;
+			width: 24px;
+			height: 24px;
+			line-height: 1;
+			text-align: center;
+			right: 4px;
+			top: 4px;
+			background: gray;
+			transition: .35s;
+		}
+
+		.lab-view.close:hover {
+			background: red;
+		}
+
+		.popup-window {
+			will-change: transform;
+			max-width: 550px;
+			max-height: 95vh;
+			overflow: auto;
+			padding: 15px;
+			background: #ffffff;
+			color: #313030;
+			-webkit-transition: .52s;
+			-moz-transition: .52s;
+			-o-transition: .52s;
+			transition: .52s;
+			-moz-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-ms-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-o-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			z-index: 1000;
+		}
+
+		.view__out {
+			visibility: visible;
+			opacity: 1;
+			z-index: 999;
+		}
+
+		.img-window.body {
+			max-width: 300px;
+			margin: 20px auto;
+			cursor: pointer;
+		}
+
+		.view__popup {
+			-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			-moz-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			-ms-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			-o-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+			transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+
+		}
+
+		.hidden__popup {
+			-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-moz-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-ms-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			-o-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+			transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+		}
+
+		.img-window {
+			margin: -15px;
+			vertical-align: top;
+		}
+
+		img.img__pop {
+			width: 100%;
+			margin-bottom: -10px;
+		}
+
+		.popup-window::-webkit-scrollbar {
+			width: 0;
+		}
+
+		.popup-window {
+			-ms-overflow-style: none;
+		}
+
+		.popup-window {
+			scrollbar-width: none;
+		}
+
+	</style>
+</head>
+
+<body>
+	<header class="fixed full-width">
+		<div class="cont">
+			<div class="logo"></div>
+			<div class="right-block">
+				<label class="firstOpen lab-view">открыть 1</label>
+			</div>
+		</div>
+	</header>
+	<div class="descr full-width">
+		<div class="desc__wrap cont">
+			<h3 class="title">Заголовок</h3>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<div class="img-window body">
+				<img src="https://avatars.mds.yandex.net/get-pdb/234183/32e5bf7d-2b45-4518-a922-9ed160f80753/s1200" alt="img" class="fourOpen img__pop">
+			</div>
+			<label class="secondOpen lab-view">открыть 2</label>
+		</div>
+	</div>
+	<div class="descr full-width">
+		<div class="desc__wrap cont">
+			<h3 class="title">Заголовок</h3>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				<label for="view">Открыть</label> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<label for="view" class="threeOpen lab-view">открыть 3</label>
+		</div>
+	</div>
+	<div class="descr full-width">
+		<div class="desc__wrap cont">
+			<h3 class="title">Заголовок</h3>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				<label for="" class="firstOpen lab-view"> Перейти к первоу окну!</label> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<label for="view" class="fourOpen lab-view">открыть окно с картинкой!</label>
+		</div>
+	</div>
+	<div class="firstOpen out-popup">
+
+		<div class="popup-window">
+			<label for="hidden" class="lab-view close">✖</label>
+			<h3 class="title">Открыто по клику на элемент с классом firstOpen!</h3>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+		</div>
+	</div>
+
+	<div class="secondOpen out-popup">
+
+		<div class="popup-window">
+			<label for="hidden" class="lab-view close">✖</label>
+			<h3 class="title">Открыто по клику на элемент с классом secondOpen!</h3>
+			<p class="sub__text">
+				<label for="" class="firstOpen lab-view"> Перейти к первоу окну!</label> consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+		</div>
+	</div>
+
+	<div class="threeOpen out-popup">
+
+		<div class="popup-window">
+			<label for="hidden" class="lab-view close">✖</label>
+			<h3 class="title">Открыто по клику на элемент с классом threeOpen!</h3>
+			<p class="sub__text">
+				<label for="" class="secondOpen lab-view"> Перейти к второму окну!!!!</label> consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+			<p class="sub__text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+			</p>
+		</div>
+	</div>
+	<div class="fourOpen out-popup">
+
+		<div class="popup-window">
+			<label for="hidden" class="lab-view close">✖</label>
+			<div class="img-window">
+				<img src="https://avatars.mds.yandex.net/get-pdb/234183/32e5bf7d-2b45-4518-a922-9ed160f80753/s1200" alt="img" class="img__pop">
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let doc = document,
+			flag = 'false',
+			speedHiddenScroll = 350,
+			lockElem = doc.querySelector('.fixed'),
+			scrollWidth = window.innerWidth - doc.getElementsByTagName('html')[0].clientWidth;
+
+		function constr(arg1, arg2, arg3, arg4, arg5, arg6) {
+			let flag2 = arg2
+			if (flag2 === 'true') {
+				doc.querySelector('div.' + arg1).classList.add('view__out'),
+					doc.querySelector('div.' + arg1 + ' > .popup-window').classList.add('view__popup');
+			} else {
+				doc.querySelector('div.' + arg1).classList.remove('view__out'),
+					doc.querySelector('div.' + arg1 + ' > .popup-window').classList.remove('view__popup');
+			}
+			setTimeout(function() {
+				flag = arg3;
+				lockElem.setAttribute('style', 'padding-right:' + arg4 + 'px');
+				doc.body.setAttribute('style', 'padding-right:' + arg4 + 'px; overflow:' + arg5);
+			}, arg6);
+		}
+		document.onkeydown = function(e) {
+			let closeEsc = doc.querySelector('.view__out').className.replace(/ .*/, '');
+			if (e.which == 27 && closeEsc) {
+				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
+			}
+		}
+		doc.body.addEventListener("click", function(e) {
+			e.preventDefault();
+			let open = e.target.className.replace(/ .*/, ''),
+				close = e.target.parentNode.parentNode.className.replace(/ .*/, ''),
+				regex = /(?:Open)/gi;
+			if (open.match(regex) && flag === 'false') {
+				constr(open, 'true', 'true', scrollWidth, 'hidden', 0);
+			} else if (open.match(regex) && e.target.tagName.toLowerCase() === 'div') {
+				constr(open, 'false', 'false', 0, 'auto', speedHiddenScroll);
+			} else if (e.target.classList.contains('close')) {
+				constr(close, 'false', 'false', 0, 'auto', speedHiddenScroll);
+			} else if (open.match(regex) && flag === 'true') {
+				let dooble = e.target.parentNode.parentNode.parentNode.className.replace(/ .*/, ''),
+					doobleTarget = e.target.className.replace(/ .*/, '');
+				constr(dooble, 'false', 'true', scrollWidth, 'hidden', 0);
+				constr(doobleTarget, 'true', 'true', scrollWidth, 'hidden', 0);
+			}
+		});
+
+	</script>
+</body>
+
+</html>
