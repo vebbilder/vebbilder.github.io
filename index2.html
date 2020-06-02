@@ -167,6 +167,7 @@
 			margin: 15px 10px 15px 10px;
 			padding: 20px;
 			background: #d8d8d8;
+			z-index: 0;
 		}
 
 		h3.title {
@@ -226,6 +227,7 @@
 
 		.popup-window {
 			will-change: transform;
+			width: 100%;
 			max-width: 550px;
 			max-height: 95vh;
 			overflow: auto;
@@ -295,6 +297,164 @@
 			scrollbar-width: none;
 		}
 
+		/*		форма*/
+
+		.right__soc {
+			padding: 17px;
+			background: #e0e0e0;
+		}
+
+		h3.contakt__title {
+			color: #464646;
+			margin-bottom: 25px;
+		}
+
+		.form__feedback {
+			width: 100%;
+		}
+
+		.preview__form {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			min-width: 280px;
+			min-height: 250px;
+			background: rgba(0, 0, 0, 0.41);
+			padding: 20px;
+			border-radius: 4px;
+		}
+
+		.field {
+			display: flex;
+			flex-flow: column-reverse;
+		}
+
+
+		.field>label,
+		.field>input,
+		.field>textarea {
+			transition: all 0.2s;
+			touch-action: manipulation;
+		}
+
+		.field>input,
+		.field>textarea {
+			position: relative;
+			width: 100%;
+			height: 31px;
+			padding-left: 14px;
+			font-size: 16px;
+			border: 0;
+			border-bottom: 1px solid #ccc;
+			font-family: inherit;
+			-webkit-appearance: none;
+			border-radius: 0;
+			cursor: text;
+			color: #ffffff;
+			background: transparent;
+			border-bottom: 1.5px solid #ffffff;
+			z-index: 23;
+		}
+
+		.field>input:focus,
+		.field>textarea:focus {
+			outline: 0;
+			border-bottom: 1.5px solid #00f0c6;
+			background: rgba(0, 0, 0, 0.43);
+		}
+
+		.field>label {
+			text-align: left;
+			letter-spacing: 0.05em;
+			color: #ffffff;
+			display: block;
+			z-index: 0;
+		}
+
+		.req:after {
+			content: "*";
+			position: absolute;
+			font-size: 27px;
+			overflow: hidden;
+			height: 20px;
+			width: 20px;
+			line-height: 1;
+		}
+
+		.field>input:placeholder-shown+label,
+		.field>textarea:placeholder-shown+label {
+			cursor: pointer;
+			max-width: 66.66%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			transform-origin: left bottom;
+			transform: translate(0px, 26px);
+		}
+
+		::-webkit-input-placeholder {
+			opacity: 1;
+			transition: inherit;
+		}
+
+		.field>input:focus::-webkit-input-placeholder,
+		.field>textarea:focus::-webkit-input-placeholder {
+			opacity: 1;
+		}
+
+		.field>input:not(:placeholder-shown)+label,
+		.field>textarea:not(:placeholder-shown)+label,
+		.field>input:focus+label,
+		.field>textarea:focus+label {
+			transform: translate(0) scale(.8);
+			cursor: pointer;
+			color: #00f0c6;
+
+		}
+
+		#message {
+			height: 50px;
+			resize: vertical;
+		}
+
+		.btn-preview {
+			position: relative;
+			width: 100%;
+			margin-top: 20px;
+			outline: none;
+			border: 2px solid #03e5bd;
+			padding: 9px 0px;
+			color: #03e5bd;
+			background: transparent;
+			overflow: hidden;
+			cursor: pointer;
+			transition: all .35s linear;
+			border-radius: 4px;
+			z-index: 2;
+		}
+
+		.btn-preview:before {
+			content: "";
+			display: inline-block;
+			position: absolute;
+			width: 126%;
+			height: 100%;
+			background: #03e5bd;
+			left: -138%;
+			transform: skew(45deg);
+			top: 0px;
+			transition: all .35s linear;
+			z-index: -1;
+		}
+
+		.btn-preview:hover {
+			color: black;
+		}
+
+		.btn-preview:hover:before {
+			left: -11%;
+		}
+
 	</style>
 </head>
 
@@ -353,19 +513,32 @@
 
 		<div class="popup-window">
 			<label for="hidden" class="lab-view close">✖</label>
-			<h3 class="title">Открыто по клику на элемент с классом firstOpen!</h3>
-			<p class="sub__text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
-			</p>
-			<p class="sub__text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
-			</p>
-			<p class="sub__text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
-			</p>
-			<p class="sub__text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
-			</p>
+			<div class="right__soc">
+				<h3 class="contakt__title">
+					Feedback
+				</h3>
+
+				<form action="post" class="preview__form form__feedback" autocomplete="off">
+					<div class="field">
+						<input type="text" name="fullname" id="fullname2" class="inp" placeholder=" " required="">
+						<label for="fullname2" class="req">Your name</label>
+					</div>
+
+					<div class="field">
+						<input type="email" name="email" id="email2" class="inp" placeholder=" " required="">
+						<label for="email2" class="inp req">Your email</label>
+					</div>
+
+					<div class="field">
+						<textarea type="email" name="email" id="message" class="inp" placeholder=" " required=""></textarea>
+						<label for="message" class="inp req">Your message</label>
+					</div>
+
+					<button type="submit" name="send" class="btn-preview">SEND</button>
+
+				</form>
+
+			</div>
 		</div>
 	</div>
 
