@@ -594,11 +594,19 @@
 
 	<script>
 		let doc = document,
+			eventClick = "click",
 			flag = 'false',
 			speedHiddenScroll = 350,
 			lockElem = doc.querySelector('.fixed'),
 			scrollWidth = window.innerWidth - doc.getElementsByTagName('html')[0].clientWidth;
 
+		if (navigator.userAgent.indexOf("Mobile") !== -1 ||
+			navigator.userAgent.indexOf("iPhone") !== -1 ||
+			navigator.userAgent.indexOf("Android") !== -1 ||
+			navigator.userAgent.indexOf("Windows Phone") !== -1) {
+			eventClick = "touchstart";
+
+		}
 		function constr(arg1, arg2, arg3, arg4, arg5, arg6) {
 			let flag2 = arg2
 			if (flag2 === 'true') {
@@ -608,7 +616,7 @@
 				doc.querySelector('div.' + arg1).classList.remove('view__out'),
 					doc.querySelector('div.' + arg1 + ' > .popup-window').classList.remove('view__popup');
 			}
-			setTimeout(function() {
+			setTimeout(() => {
 				flag = arg3;
 				lockElem.setAttribute('style', 'padding-right:' + arg4 + 'px');
 				doc.body.setAttribute('style', 'padding-right:' + arg4 + 'px; overflow:' + arg5);
@@ -620,14 +628,16 @@
 				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
 			}
 		}
-		doc.body.addEventListener("click", function(e) {
-			e.preventDefault();
+		doc.body.addEventListener(eventClick, function(e) {
+//			e.preventDefault();
 			let open = e.target.className.replace(/ .*/, ''),
 				close = e.target.parentNode.parentNode.className.replace(/ .*/, ''),
 				regex = /(?:Open)/gi;
 			if (open.match(regex) && flag === 'false') {
 				constr(open, 'true', 'true', scrollWidth, 'hidden', 0);
-			} else if (open.match(regex) && e.target.tagName.toLowerCase() === 'div') {
+			} else if (open.match(regex) && e.target.tagName.toLowerCase() === 'a') {
+				e.preventDefault();
+			}else if (open.match(regex) && e.target.tagName.toLowerCase() === 'div') {
 				constr(open, 'false', 'false', 0, 'auto', speedHiddenScroll);
 			} else if (e.target.classList.contains('close')) {
 				constr(close, 'false', 'false', 0, 'auto', speedHiddenScroll);
