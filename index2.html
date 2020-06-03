@@ -43,6 +43,7 @@
 
 		/*анимации */
 
+		/*
 		@-webkit-keyframes myfirst {
 			0% {
 				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
@@ -80,12 +81,17 @@
 				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
 			}
 		}
+*/
 
 		body {
 			width: 100%;
 			min-height: 100vh;
 			padding: 50px 0px 30px 0px;
 			background: gray;
+		}
+
+		a {
+			touch-action: none;
 		}
 
 		header.fixed.full-width {
@@ -472,7 +478,7 @@
 		<div class="desc__wrap cont">
 			<h3 class="title">Заголовок</h3>
 			<p class="sub__text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
 			<div class="img-window body">
 				<img src="https://avatars.mds.yandex.net/get-pdb/234183/32e5bf7d-2b45-4518-a922-9ed160f80753/s1200" alt="img" class="fourOpen img__pop">
@@ -512,7 +518,7 @@
 	</div>
 	<div class="firstOpen out-popup">
 
-		<div class="popup-window">
+		<div class="popup-window" style="padding: 0px;margin: 0px 10px;">
 			<label for="hidden" class="lab-view close">✖</label>
 			<div class="right__soc">
 				<h3 class="contakt__title">
@@ -605,8 +611,8 @@
 			navigator.userAgent.indexOf("Android") !== -1 ||
 			navigator.userAgent.indexOf("Windows Phone") !== -1) {
 			eventClick = "touchstart";
-
 		}
+
 		function constr(arg1, arg2, arg3, arg4, arg5, arg6) {
 			let flag2 = arg2
 			if (flag2 === 'true') {
@@ -628,16 +634,17 @@
 				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
 			}
 		}
-		doc.body.addEventListener(eventClick, function(e) {
-//			e.preventDefault();
+		doc.body.addEventListener(eventClick, (e) => {
 			let open = e.target.className.replace(/ .*/, ''),
 				close = e.target.parentNode.parentNode.className.replace(/ .*/, ''),
 				regex = /(?:Open)/gi;
+			if (e.target.tagName.toLowerCase() === 'a' && open.match(regex) && flag === 'false') {
+				e.preventDefault();
+				constr(open, 'true', 'true', scrollWidth, 'hidden', 0);
+			}
 			if (open.match(regex) && flag === 'false') {
 				constr(open, 'true', 'true', scrollWidth, 'hidden', 0);
-			} else if (open.match(regex) && e.target.tagName.toLowerCase() === 'a') {
-				e.preventDefault();
-			}else if (open.match(regex) && e.target.tagName.toLowerCase() === 'div') {
+			} else if (open.match(regex) && e.target.tagName.toLowerCase() === 'div') {
 				constr(open, 'false', 'false', 0, 'auto', speedHiddenScroll);
 			} else if (e.target.classList.contains('close')) {
 				constr(close, 'false', 'false', 0, 'auto', speedHiddenScroll);
@@ -648,7 +655,6 @@
 				constr(doobleTarget, 'true', 'true', scrollWidth, 'hidden', 0);
 			}
 		});
-
 	</script>
 </body>
 
