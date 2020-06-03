@@ -253,7 +253,6 @@
 		}
 
 		.img-window.body {
-			position: relative;
 			max-width: 300px;
 			margin: 20px auto;
 			cursor: pointer;
@@ -456,14 +455,6 @@
 			left: -11%;
 		}
 
-		a.fourOpen:nth-child(1) {
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			top: 0px;
-			left: 0px;
-		}
-
 	</style>
 </head>
 
@@ -472,7 +463,7 @@
 		<div class="cont">
 			<div class="logo"></div>
 			<div class="right-block">
-				<a href="#" class="firstOpen lab-view">открыть 1</a>
+				<label class="firstOpen lab-view">открыть 1</label>
 			</div>
 		</div>
 	</header>
@@ -483,10 +474,9 @@
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
 			<div class="img-window body">
-				<a href="#" class="fourOpen"></a>
-				<img src="https://avatars.mds.yandex.net/get-pdb/234183/32e5bf7d-2b45-4518-a922-9ed160f80753/s1200" alt="img" class="img__pop">
+				<img src="https://avatars.mds.yandex.net/get-pdb/234183/32e5bf7d-2b45-4518-a922-9ed160f80753/s1200" alt="img" class="fourOpen img__pop">
 			</div>
-			<a href="#" class="secondOpen lab-view">открыть 2</a>
+			<label class="secondOpen lab-view">открыть 2</label>
 		</div>
 	</div>
 	<div class="descr full-width">
@@ -501,7 +491,7 @@
 			<p class="sub__text">
 				<label for="view">Открыть</label> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
-			<a href="#" class="threeOpen lab-view">открыть 3</a>
+			<label for="view" class="threeOpen lab-view">открыть 3</label>
 		</div>
 	</div>
 	<div class="descr full-width">
@@ -514,15 +504,15 @@
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
 			<p class="sub__text">
-				<a href="#" class="firstOpen lab-view"> Перейти к первоу окну!</a> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+				<label for="" class="firstOpen lab-view"> Перейти к первоу окну!</label> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
-			<a href="#" class="fourOpen lab-view">открыть окно с картинкой!</a>
+			<label for="view" class="fourOpen lab-view">открыть окно с картинкой!</label>
 		</div>
 	</div>
 	<div class="firstOpen out-popup">
 
 		<div class="popup-window">
-			<a href="#" class="lab-view close">✖</a>
+			<label for="hidden" class="lab-view close">✖</label>
 			<div class="right__soc">
 				<h3 class="contakt__title">
 					Feedback
@@ -555,10 +545,10 @@
 	<div class="secondOpen out-popup">
 
 		<div class="popup-window">
-			<a href="#" class="lab-view close">✖</a>
+			<label for="hidden" class="lab-view close">✖</label>
 			<h3 class="title">Открыто по клику на элемент с классом secondOpen!</h3>
 			<p class="sub__text">
-				<a href="#" class="firstOpen lab-view"> Перейти к первоу окну!</a> consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+				<label for="" class="firstOpen lab-view"> Перейти к первоу окну!</label> consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
 			<p class="sub__text">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
@@ -575,10 +565,10 @@
 	<div class="threeOpen out-popup">
 
 		<div class="popup-window">
-			<a href="#" class="lab-view close">✖</a>
+			<label for="hidden" class="lab-view close">✖</label>
 			<h3 class="title">Открыто по клику на элемент с классом threeOpen!</h3>
 			<p class="sub__text">
-				<a href="#" class="secondOpen lab-view"> Перейти к второму окну!!!!</a> consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
+				<label for="" class="secondOpen lab-view"> Перейти к второму окну!!!!</label> consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
 			</p>
 			<p class="sub__text">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ipsum odio dolor consequatur molestiae incidunt, quae nesciunt aspernatur iure laborum dolorum asperiores enim fugiat earum! Enim quae voluptatibus odio culpa consequuntur totam? Voluptatem, eius, libero. Dolorem sit, iusto deleniti harum.
@@ -594,7 +584,7 @@
 	<div class="fourOpen out-popup">
 
 		<div class="popup-window">
-			<a href="#" class="lab-view close">✖</a>
+			<label for="hidden" class="lab-view close">✖</label>
 			<div class="img-window">
 				<img src="https://avatars.mds.yandex.net/get-pdb/234183/32e5bf7d-2b45-4518-a922-9ed160f80753/s1200" alt="img" class="img__pop">
 			</div>
