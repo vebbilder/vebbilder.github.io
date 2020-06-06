@@ -40,49 +40,6 @@
 		dd {
 			margin: 0;
 		}
-
-		/*анимации */
-
-		/*
-		@-webkit-keyframes myfirst {
-			0% {
-				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-			}
-			25% {
-				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-			}
-			50% {
-				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-			}
-			100% {
-				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-			}
-		}
-
-		@keyframes myfirst {
-			0% {
-				-webkit-transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-				transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-			}
-			25% {
-				-webkit-transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-				transform: perspective(600px) translate(0px, -65%) rotateX(35deg);
-			}
-			50% {
-				-webkit-transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-				transform: perspective(600px) translate(0px, -30%) rotateX(17deg);
-			}
-			100% {
-				-webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-				transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-			}
-		}
-*/
-
 		body {
 			width: 100%;
 			min-height: 100vh;
@@ -599,10 +556,11 @@
 	</div>
 
 	<script>
+		'use strict';
 		let doc = document,
 			eventClick = "click",
 			flag = 'false',
-			speedHiddenScroll = 500,
+			speedHiddenScroll = +/\d+\.\d+/.exec(window.getComputedStyle(doc.querySelector('.out-popup')).transition)[0] * 1000,
 			lockElem = doc.querySelector('.fixed'),
 			scrollWidth = window.innerWidth - doc.getElementsByTagName('html')[0].clientWidth;
 
@@ -628,7 +586,7 @@
 				doc.body.setAttribute('style', 'padding-right:' + arg4 + 'px; overflow:' + arg5);
 			}, arg6);
 		}
-		document.onkeydown = function(e) {
+		doc.onkeydown = (e) => {
 			let closeEsc = doc.querySelector('.view__out').className.replace(/ .*/, '');
 			if (e.which == 27 && closeEsc) {
 				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
@@ -655,6 +613,7 @@
 				constr(doobleTarget, 'true', 'true', scrollWidth, 'hidden', 0);
 			}
 		});
+
 	</script>
 </body>
 
