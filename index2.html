@@ -587,11 +587,9 @@
 			}, arg6);
 		}
 		doc.onkeydown = (e) => {
-			let closeEsc = doc.querySelector('.view__out').className.replace(/ .*/, '');
+			let closeEsc = doc.querySelector('.view__out');
 			if (e.which == 27 && closeEsc) {
-				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
-			}else{
-				alert();
+				constr(closeEsc.className.replace(/ .*/, ''), 'false', 'false', 0, 'auto', speedHiddenScroll);
 			}
 		}
 		doc.body.addEventListener(eventClick, (e) => {
