@@ -588,7 +588,7 @@
 		}
 		doc.onkeydown = (e) => {
 			let closeEsc = doc.querySelector('.view__out').className.replace(/ .*/, '');
-			if (e.which == 27 && closeEsc) {
+			if (e.which == 27 && closeEsc != null) {
 				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
 			}
 		}
