@@ -587,7 +587,7 @@
 			}, arg6);
 		}
 		doc.onkeydown = (e) => {
-			let closeEsc = doc.querySelector('.out-popup').className.replace(/ .*/, '');
+			let closeEsc = doc.querySelector('.popup-window').className.replace(/ .*/, '');
 			if (e.which == 27 && closeEsc) {
 				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
 			}
