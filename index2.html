@@ -587,9 +587,11 @@
 			}, arg6);
 		}
 		doc.onkeydown = (e) => {
-			let closeEsc = doc.querySelector('.view__out').className.replace(/ .*/, '') || 'out-popup';
+			let closeEsc = doc.querySelector('.view__out').className.replace(/ .*/, '');
 			if (e.which == 27 && closeEsc) {
 				constr(closeEsc, 'false', 'false', 0, 'auto', speedHiddenScroll);
+			}else{
+				alert();
 			}
 		}
 		doc.body.addEventListener(eventClick, (e) => {
