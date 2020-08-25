@@ -560,7 +560,7 @@
 		let doc = document,
 			eventClick = "click",
 			flag = 'false',
-			speedHiddenScroll = +/\d+\.\d+/.exec(window.getComputedStyle(doc.querySelector('.out-popup')).transition)[0] * 1000 || 500,
+			speedHiddenScroll = 500,
 			lockElem = doc.querySelector('.fixed'),
 			scrollWidth = window.innerWidth - doc.getElementsByTagName('html')[0].clientWidth;
 
