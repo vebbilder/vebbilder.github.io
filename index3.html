@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+.windows-modal{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+}
+.windows-content{
+  position: relative;
+  width: 90%;
+  height: auto;
+  padding: 15px;
+  background: #fff;
+  z-index: 1000;
+}
+.close-modal {
+    display: inline;
+    position: absolute;
+    top: -3px;
+    right: 4px;
+    color: red;
+    font-size: 33px;
+    cursor: pointer;
+}
+	</style>
+</head>
+
+<body>
+	<button data-window="window1">Открыть окно 1</button>
+<button data-window="window2">Открыть окно 2</button>
+
+<div class="windows-modal" data-window="window1" style="display: none;">
+    <div class="windows-content">
+    <div class="close-modal">&times</div>
+        <h3 class="modal-title">Окно №1</h3>
+        <p class="paragraf">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum tenetur error quasi sit recusandae rerum repudiandae earum suscipit! Nisi ea fugiat vel tempore voluptas quibusdam magni eveniet perferendis earum recusandae?15
+        </p>
+   </div>
+</div>
+
+<div class="windows-modal" data-window="window2" style="display: none;">
+    <div class="windows-content">
+    <div class="close-modal">&times</div>
+        <h3 class="modal-title">Окно №2</h3>
+        <p class="paragraf">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum tenetur error quasi sit recusandae rerum repudiandae earum suscipit! Nisi ea fugiat vel tempore voluptas quibusdam magni eveniet perferendis earum recusandae?15
+        </p>
+   </div>
+</div>
+
+	<script>
+  window.onclick = function(e){
+if
+(e.target.hasAttribute('data-window') && e.target.classList.contains('windows-modal') || e.target.classList.contains('close-modal'))
+{
+   document.querySelector('.windows-modal').style.display = 'none';
+}
+else
+{
+   document.querySelector(`div[data-window=${e.target.getAttribute('data-window')}]`).style.display = 'flex';
+}
+}
+	</script>
+</body>
+
+</html>
